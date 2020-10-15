@@ -1,0 +1,10 @@
+Max used Memory : 353MB at 2016-12-29 20:52:39.786 +00:00; 
+
+2016-12-30 04:22:39,786 [pool-7-thread-1]  INFO  ProcessMonitor.java (line 28) 
+Memory Usage Metrics 
+Total  Memory: 591MB; 
+Available Free Memory: 416MB; 
+Available Maximum Memory : 591MB; 
+Used Memory: 174MB; 
+Max used Memory : 353MB at 2016-12-29 20:52:39.786 +00:00; 
+
