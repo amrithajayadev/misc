@@ -1,5 +1,6 @@
 nums = [1, 2, 3]
 
+
 def get_all_subsets(str1):
     outlist = []
 
@@ -16,6 +17,7 @@ def get_all_subsets(str1):
 
 get_all_subsets("abc")
 
+
 def find_subsets(nums, subset, res):
     res.append(subset)
     for i in range(len(nums)):
@@ -28,7 +30,7 @@ def subsets(nums):
     return res
 
 
-print(subsets(nums))
+# print(subsets(nums))
 
 def find_permutations_array(nums, perm, res):
     if not nums:
@@ -64,3 +66,27 @@ def permutationsUnique(nums):
 
 
 # print(permutationsUnique([1, 1, 2]))
+
+
+def nextPermutation(nums):
+    # Your code goes here
+    # Find the first decreasing point. -> idx
+    # Find the num just greater than idx
+    # Swap.
+    # reverse everything after the idx
+    n = len(nums)
+    idx = -1
+    for i in range(n - 1, -1, -1):
+        if nums[i-1] < nums[i]:
+            idx = i-1
+            break
+    print(idx, nums[idx])
+    for i in range(n - 1, -1, -1):
+        if nums[i] > nums[idx]:
+            nums[i], nums[idx] = nums[idx], nums[i]
+            print(f"swapping {nums[idx], nums[i]}")
+            break
+    print(nums)
+
+nums = [4, 2, 3, 1, 5]
+nextPermutation(nums)

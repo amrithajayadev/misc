@@ -76,6 +76,41 @@ if path_sum1(root, 22):
     print("True")
 else:
     print("False")
+
+
 # print(path_sum1(root, 22))
 # get_leaves(root, leaves)
 # print(leaves)
+def create_BST(arr):
+    def create_node(l, r):
+        if l > r:
+            return None
+        mid = (l + r) // 2
+        node = TreeNode(arr[mid])
+        node.left = create_node(l, mid - 1)
+        node.right = create_node(mid + 1, r)
+        return node
+
+    return create_node(0, len(arr)-1)
+
+def validate_binary_tree_is_bst():
+    root = create_BST([-1, 0, 1, 2, 3, 4, 5, 6, 7, 8])
+    n_list = []
+
+    def dfs(node):
+        if not node:
+            return
+        dfs(node.left)
+        n_list.append(node.val)
+        dfs(node.right)
+
+    dfs(root)
+    print(n_list)
+    for i in range(len(n_list) - 1):
+        if n_list[i] > n_list[i + 1]:
+            return False
+    return True
+
+
+print("validate_binary_tree_is_bst")
+print(validate_binary_tree_is_bst())

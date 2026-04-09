@@ -31,12 +31,12 @@ def subarray_sum_k_bruteforce(nums, k):
 # nums = [1,2,3]
 # k = 3
 
-nums = [1,1,1]
+nums = [1, 1, 1]
 k = 2
 
 # nums = [1, 2, 1, 2, 1]
 # k = 3
-print(subarray_sum_k_bruteforce(nums, k))
+# print(subarray_sum_k_bruteforce(nums, k))
 
 
 def subarray_sum_k_prefix(nums, k):
@@ -51,4 +51,21 @@ def subarray_sum_k_prefix(nums, k):
     return res
 
 
-print(subarray_sum_k_prefix(nums, k))
+# print(subarray_sum_k_prefix(nums, k))
+
+
+def subarraySum(nums, k):
+    count = 0
+    prefix_sum = 0
+    prefix_map = {0: 1}
+
+    for n in nums:
+        prefix_sum += n
+        if (n - k) in prefix_map:
+            count += 1
+
+        prefix_map[prefix_sum] = prefix_map.get(prefix_sum, 0) + 1
+    return count
+
+
+print(subarraySum(nums=[2,2,-4,1,1,2], k=-3))

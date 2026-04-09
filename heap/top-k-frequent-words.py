@@ -51,21 +51,53 @@ def topKFrequent(words: List[str], k: int) -> List[str]:  # O(n log n) solution
 words = ["i", "love", "leetcode", "i", "love", "coding", "k", "k"]
 k = 2
 
-# words = ["the", "day", "is", "sunny", "the", "the", "the", "sunny", "is", "is"]
-# k = 4
+def topKfrequentWords(words, k):
+    word_freq_map = {}
+    for w in words:
+        if word_freq_map.get(w):
+            word_freq_map[w] += 1
+        else:
+            word_freq_map[w] = 1
 
-top_k_words(words, k)
+    hp = []
+    for key, val in word_freq_map.items():
+        if len(hp) < k:
+            heapq.heappush(hp, (val, key))
+        elif hp[0][0] < val:
+            heapq.heappop(hp)
+            heapq.heappush(hp, (val, key))
+
+    output = []
+    for _, key in hp:
+        output.append(key)
+
+    return output
+
+words = ["i", "love", "leetcode", "i", "love", "coding", "k", "k"]
+k = 2
+print(topKfrequentWords(words, k))
+
+words = ["the", "day", "is", "sunny", "the", "the", "the", "sunny", "is", "is"]
+k = 4
+print(topKfrequentWords(words, k))
+
+# top_k_words(words, k)
 
 
 def top_k_nums(nums, k):  ## also O(nlogn) because creating heap from full nums.
     k_large = 0
+    nums = [-1*n for n in nums]
     heapq.heapify(nums)
+    out = []
     while k > 0:
         k_large = heapq.heappop(nums)
         k -= 1
-    return k_large
+        out.append(k_large*-1)
+
+    return out
 
 # print(top_k_nums([1, 2, 3, 4, 5, 6], 4))
+# print(top_k_nums([5,10, 11, 2, 7, 8, 3, 1, 100], 4))
 
 
 def bin_sort(nums):

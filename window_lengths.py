@@ -83,10 +83,47 @@ def insert_interval(intervals, newInterval):
             out.append(interval)
     print(out)
 
+
 #
 # intervals = [[1, 2], [3, 5], [6, 7], [8, 10], [12, 16]]
 # newInterval = [4, 8] o/p [[1, 2], [3, 10], [12, 16]]
 
-intervals = [[1,3],[6,9]]
-newInterval = [2,5]
-insert_interval(intervals, newInterval)
+intervals = [[1, 3], [6, 9]]
+newInterval = [2, 5]
+
+
+# insert_interval(intervals, newInterval)
+
+
+def sort_intervals(intervals):
+    for i in range(len(intervals)):
+        for j in range(i, len(intervals)):
+            if intervals[i][0] > intervals[j][0]:
+                intervals[i], intervals[j] = intervals[j], intervals[i]
+
+
+intervals = [[1, 3], [2, 6], [8, 10], [15, 18], [-1, 2]]
+sort_intervals(intervals)
+# print(intervals)
+
+"""
+Find gaps in bookings (free slots)
+slots = [[1, 2], [3, 5], [6, 7], [8, 10], [12, 16]]
+free slots = [[2,3],[5,6],[7,8],[10,12]]
+"""
+
+
+def find_free_slots(slots):
+    res = []
+    n = len(slots)
+    i = 0
+    while i < n - 1:
+        n_start = slots[i][1]
+        n_end = slots[i + 1][0]
+        res.append([n_start, n_end])
+        i += 1
+    print(res)
+
+
+slots = [[1, 2], [3, 5], [6, 7], [8, 10], [12, 16]]
+find_free_slots(slots)

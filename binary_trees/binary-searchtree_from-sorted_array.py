@@ -2,7 +2,7 @@ from collections import deque
 
 
 class TreeNode:
-    def __init__(self, val=0, left=None, right=None):
+    def __init__(self, val=None, left=None, right=None):
         self.value = val
         self.left = left
         self.right = right
@@ -98,10 +98,45 @@ def level_order_traversal_queue(node):
             if n:
                 l_nodes.append(n.value)
                 queue.append(n.left)
-                queue.append(n.left)
+                queue.append(n.right)
         all_nodes.append(l_nodes)
     return all_nodes
 
 
 test_my_level_nodes(nums=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15])
+test_my_level_nodes(nums=[1, 2, 3])
+
+
 # print(sortedArrayToBST(nums=[-10, -3, 0, 5, 9]))
+def create_tree():
+    # level order : Input: root = [1,10,4,3,null,7,9,12,8,6,null,null,2]
+    root = TreeNode(1)
+    root.left = TreeNode(10)
+    root.left.left = TreeNode(3)
+    root.left.left.left = TreeNode(12)
+    root.left.left.right = TreeNode(8)
+
+    root.right = TreeNode(4)
+    root.right.left = TreeNode(7)
+    root.right.left.right = TreeNode(6)
+    root.right.right = TreeNode(9)
+    root.right.right.left = TreeNode(2)
+    return level_order_traversal_queue(root)
+
+
+print(create_tree())
+
+
+def even_and_is_decreasing(nums):
+    if len(nums) == 1:
+        if nums[0] % 2 == 0:
+            return True
+        else:
+            return False
+    for i in range(1, len(nums)):
+        if (nums[i] > nums[i - 1]) or nums[i] % 2 != 0 or nums[i - 1] % 2 != 0:
+            return False
+    return True
+
+
+print(even_and_is_decreasing([10, 4]))

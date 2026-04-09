@@ -13,3 +13,19 @@ def max_subarray(nums, n):
 
 
 print(max_subarray(nums, n))
+
+
+def max_subarray_sum(nums):
+    # start with the first number
+    # check which is better the curr_sum+next or next
+    # store the max value to max_sum
+
+    curr_sum = 0
+    max_sum = -100000000
+
+    for n in nums:
+        curr_sum = max(curr_sum + n, n)
+        max_sum = max(max_sum, curr_sum)
+    return max_sum
+
+print(max_subarray_sum(nums))

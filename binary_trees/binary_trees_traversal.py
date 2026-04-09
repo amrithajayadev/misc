@@ -1,3 +1,6 @@
+from collections import deque
+
+
 class Node:
     def __init__(self, value):
         self.right = None
@@ -70,3 +73,6 @@ def level_order_traversal(node):
 
 print("\nLevel order traversal")
 level_order_traversal(root)
+
+
+

@@ -58,4 +58,30 @@ def three_sums_1(nums):
     return triplets
 
 
-print(three_sums_1([-1,0,1,2,-1,-4,-2,-3,3,0,4]))
+# print(three_sums_1([-1,0,1,2,-1,-4,-2,-3,3,0,4]))
+
+
+def threeSum(nums: List[int]) -> List[List[int]]:
+    n = len(nums)
+    output = set()
+    nums.sort()
+    # freq_map = Counter(nums)
+    i = 0
+    while i < n:
+        j = i + 1
+        k = n - 1
+        while j < k:
+            if nums[j] + nums[k] == nums[i]:
+                output.add(tuple([nums[i], nums[j], nums[k]]))
+                while nums[j] == nums[j+1]:
+                    j +=1
+                while nums[k-1] == nums[k]:
+                    k -=1
+            elif nums[j] + nums[k] > nums[i]:
+                k -= 1
+            else:
+                j += 1
+        i += 1
+    return list(output)
+
+print(threeSum([-1,0,1,2,-1,-4]))
